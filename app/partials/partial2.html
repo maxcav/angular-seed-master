@@ -1,0 +1,15 @@
+<p>This is the partial for view 2.</p>
+<p>
+  Showing of 'interpolate' filter:
+ <h1>Hello</h1>
+
+<ul>
+  <li ng-repeat="item in money.data">
+  	Amount: {{item.amount}}
+  	Date: {{item.date * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}
+  	Price: {{item.price}}
+  	Time: {{item.tid}}
+
+  </li>
+</ul>
+</p>
