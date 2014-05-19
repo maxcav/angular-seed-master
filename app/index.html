@@ -20,10 +20,10 @@
         </button>
         <a href="#" class="navbar-brand">Coins</a>
       </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" ng-controller="HeaderController">
           <ul class="nav navbar-nav">
-             <li><a href="view1">view1</a></li>
-            <li><a href="view2">view2</a></li>
+             <li ng-class="{ active: isActive('/view1')}"><a href="view1">view1</a></li>
+            <li ng-class="{ active: isActive('/view2')}"><a href="view2">view2</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Drop<b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -32,8 +32,8 @@
                 <li><a href="#">c</a></li>
               </ul>
             </li>
-             <li><a href="line">line</a></li>
-            <li><a href="ticker">ticker</a></li>
+             <li ng-class="{ active: isActive('/line')}"><a href="line">line</a></li>
+            <li ng-class="{ active: isActive('/ticker')}"><a href="ticker">ticker</a></li>
           </ul>
         </div>
 

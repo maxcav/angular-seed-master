@@ -71,8 +71,8 @@ angular.module('myApp.controllers', ['chartjs']).
     labels : time,
     datasets : [
       {
-			fillColor : "rgba(151,187,205,0.5)",
-			strokeColor : "rgba(151,187,205,1)",
+			fillColor : "rgba(26,188,156,0.5)",
+			strokeColor : "#169d82",
 			pointColor : "rgba(151,187,205,1)",
 			pointStrokeColor : "#fff",
 			data : price
@@ -87,26 +87,78 @@ angular.module('myApp.controllers', ['chartjs']).
 
   .controller('tickerCtrl', ['$scope', '$http',function($scope, $http) {
 
+  	$scope.jsonSeter = function(key){
+	console.log(key);
+}
+
+$scope.imgName = function(key){
+	 var imageName = key.slice(0, -4);
+
+
+	 var formatImageName = 'img/'+ imageName +'.png';
+	 console.log(formatImageName, $scope.ticker[key] );
+	 
+	 return formatImageName;
+}
+
   $http.get('../server/ticker.php').success(function(data){
 
 		$scope.ticker = data;
 
 
-		//console.log('tickerData:', $scope.ticker);
+		console.log('tickerData:', $scope.ticker);
 
-		var coinName = new Array();
+		var coinBtc = {};
+		var coinLtc = {};
+		var coinCny = {};
+		var coinNew = {};
 
 		for(var key in $scope.ticker) {
-   			 coinName.push(key);
+
+			if(key.slice(-3) == 'btc'){
+   					 	coinBtc[key] = $scope.ticker[key];
+   			}else if(key.slice(-3) == 'ltc'){
+   				coinLtc[key] = $scope.ticker[key];
+   		   }else if(key.slice(-3) == 'cny'){
+   				coinCny[key] = $scope.ticker[key];
+   		   }else{
+   		   		coinNew[key] = $scope.ticker[key];
+   		   }
 		}	
 
-		console.log('coinName:', coinName);
+		
 
-		$scope.coinName = coinName;
+		// console.log('coinBtc:', coinBtc);
+		// console.log('coinLtc:', coinLtc);
+		// console.log('coinCny:', coinCny);
+		// console.log('coinnew:', coinNew);
+
+		$scope.coinBtc = coinBtc;
+		$scope.coinLtc = coinLtc;
+		$scope.coinCny = coinCny;
+		$scope.marketArray = coinBtc;
 			
-
+		$scope.coinSeter = function(key){
+			switch(key)
+			{
+			case 'cny':
+			  $scope.marketArray =  $scope.coinCny;
+			  break;
+			case 'ltc':
+			  $scope.marketArray = $scope.coinLtc;
+			  break;
+			default:
+			  $scope.marketArray = $scope.coinBtc;
+			}
+		};
 
 		
 	});
 
   }]);
+
+  function HeaderController($scope, $location){ 
+    	$scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
+}
