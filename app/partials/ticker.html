@@ -16,8 +16,8 @@
     </div>
 </div>    
 		
-		<div class="row tradingPairs"  ng-repeat="(key, value) in marketArray" ng-click="jsonSeter(key)">
-				
+		<div class="row tradingPairs"  ng-repeat="(key, value) in marketArray">
+		  <a href="line/{{key}}">	
 			<div class="col-md-10 max">
 				<p class=""> 
 					<img ng-src="{{imgName(key)}}" height="30px" alt="">
@@ -27,11 +27,8 @@
 					<strong>Low:</strong> {{value.low}} <strong>sell:</strong> {{value.sell}}
 					<span ng-show="item.vol_bqc"><strong>Volume BQC:</strong> {{value.vol_bqc}}</span> 
 					<span ng-show="item.vol_cny"><strong>Volume CNY:</strong> {{value.vol_cny}}</span>
-					
 				</p>
-				
 			</div>
-
+		  </a>	
 		</div>	
-
 </div>	

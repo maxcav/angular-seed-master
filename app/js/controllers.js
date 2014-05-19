@@ -35,61 +35,63 @@ angular.module('myApp.controllers', ['chartjs']).
 
   }])
 
-  .controller('lineCtrl', ['$scope' , '$http',function($scope, $http) {
+  .controller('lineCtrl', ['$scope' , '$http', '$routeParams',function($scope, $http, $routeParams) {
 
-  $http.get('../server/json.php').success(function(data){
+  	var setJson = function(coinValue) {
+	 		$http.get('../server/json.php?coinValue=' + coinValue).success(function(data) {
+			$scope.money = data;
 
-		$scope.money = data;
+			console.log('money:', $scope.money);
 
-		console.log('money:', $scope.money);
+			var price = new Array();
+			var timeDate = new Array();
+			var time = new Array();
 
-		var price = new Array();
-		var timeDate = new Array();
-		var time = new Array();
+			for(var i = 0; i<$scope.money.data.length; i++){
 
-		for(var i = 0; i<$scope.money.data.length; i++){
+				//console.log($scope.money.data[i].price);
 
-			//console.log($scope.money.data[i].price);
+				var date = new Date($scope.money.data[i].date * 1000);
+				timeDate.push(date.toString());
 
-			var date = new Date($scope.money.data[i].date * 1000);
-			timeDate.push(date.toString());
+				var hours = date.getHours();
+				var minutes = date.getMinutes();
+				var seconds = date.getSeconds();
+				var formattedTime = hours + ':' + minutes + ':' + seconds;
+				time.push(formattedTime);
 
-			var hours = date.getHours();
-			var minutes = date.getMinutes();
-			var seconds = date.getSeconds();
-			var formattedTime = hours + ':' + minutes + ':' + seconds;
-			time.push(formattedTime);
+				price.push($scope.money.data[i].price);
+				
+			}	
 
-			price.push($scope.money.data[i].price);
-			
-		}	
+				console.log(price);
+				console.log(timeDate);
 
-			console.log(price);
-			console.log(timeDate);
+				 $scope.lineData = {
+	    labels : time,
+	    datasets : [
+	      {
+				fillColor : "rgba(26,188,156,0.5)",
+				strokeColor : "#169d82",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : price
+			}
+	    ]
+	  }; 
+	  	});	
+  }
 
-			 $scope.lineData = {
-    labels : time,
-    datasets : [
-      {
-			fillColor : "rgba(26,188,156,0.5)",
-			strokeColor : "#169d82",
-			pointColor : "rgba(151,187,205,1)",
-			pointStrokeColor : "#fff",
-			data : price
-		}
-    ]
-  };
+  	setJson($routeParams.coinValue);
 
 		
-	});
+
 
   }])
 
   .controller('tickerCtrl', ['$scope', '$http',function($scope, $http) {
 
-  	$scope.jsonSeter = function(key){
-	console.log(key);
-}
+  
 
 $scope.imgName = function(key){
 	 var imageName = key.slice(0, -4);

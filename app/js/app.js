@@ -15,7 +15,7 @@ config(function ($locationProvider) {
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
   $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-  $routeProvider.when('/line', {templateUrl: 'partials/line.html', controller: 'lineCtrl'});
+  $routeProvider.when('/line/:coinValue', {templateUrl: 'partials/line.html', controller: 'lineCtrl'});
   $routeProvider.when('/ticker', {templateUrl: 'partials/ticker.html', controller: 'tickerCtrl'});
   $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
