@@ -89,19 +89,22 @@ angular.module('myApp.controllers', ['chartjs']).
 
   }])
 
-  .controller('tickerCtrl', ['$scope', '$http',function($scope, $http) {
+  .controller('tickerCtrl', ['$scope', '$rootScope', '$http',function($scope, $rootScope, $http) {
 
-  
+	$scope.imgName = function(key){
+		 var imageName = key.slice(0, -4);
+		 var defaultImageName = 'img/default.png';
+		 var formatImageName = 'img/'+ imageName +'.png';
 
-$scope.imgName = function(key){
-	 var imageName = key.slice(0, -4);
+		 var img = new Image();
+		 img.src = formatImageName;
 
-
-	 var formatImageName = 'img/'+ imageName +'.png';
-	 console.log(formatImageName, $scope.ticker[key] );
-	 
-	 return formatImageName;
-}
+		 if(img.height != 0) {
+		 	return formatImageName;
+		 } else {
+		 	return defaultImageName;
+		 }
+	}
 
   $http.get('../server/ticker.php').success(function(data){
 
