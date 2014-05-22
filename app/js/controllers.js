@@ -40,7 +40,7 @@ angular.module('myApp.controllers', ['chartjs']).
   	var setJson = function(coinValue) {
 	 		$http.get('../server/json.php?coinValue=' + coinValue).success(function(data) {
 			$scope.money = data;
-
+			$scope.coinValue = coinValue;
 			console.log('money:', $scope.money);
 
 			var price = new Array();
@@ -89,7 +89,7 @@ angular.module('myApp.controllers', ['chartjs']).
 
   }])
 
-  .controller('tickerCtrl', ['$scope', '$rootScope', '$http',function($scope, $rootScope, $http) {
+  .controller('tickerCtrl', ['$scope', '$rootScope', '$http' ,function($scope, $rootScope, $http) {
 
 	$scope.imgName = function(key){
 		 var imageName = key.slice(0, -4);
@@ -105,6 +105,8 @@ angular.module('myApp.controllers', ['chartjs']).
 		 	return defaultImageName;
 		 }
 	}
+
+
 
   $http.get('../server/ticker.php').success(function(data){
 
@@ -157,9 +159,11 @@ angular.module('myApp.controllers', ['chartjs']).
 			}
 		};
 
+
 		
 	});
-
+	
+	
   }]);
 
   function HeaderController($scope, $location){ 
