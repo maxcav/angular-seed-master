@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="css/css/bootstrap-responsive.min.css">
   <link href='http://fonts.googleapis.com/css?family=Raleway:600,200' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body ng-controller ="LoadingCtrl">
   <div class="navbar navbar-default navbar-fixed-top navcolor">
     <div class="maxcontainer">
       <div class="navbar-header">
@@ -29,9 +29,9 @@
           </ul>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" ng-model="search" placeholder="Search Coin">
+               <input type="text" ng-controller="tickerCtrl" class="form-control" ng-model="search.$" placeholder="Search Coin"> 
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+          
           </form>
         </div>
 
@@ -40,6 +40,14 @@
   </div>
 
   <div ng-view></div>
+
+  <div class="loadscreen" ng-show="loading">
+    <div class="text-center">
+      <p class="lead">Loading.....</p>
+      <img src="img/loading.gif" width="310" alt="">
+      </div>
+  </div>
+
 
   <div>Angular seed app: v<span app-version></span></div>
 

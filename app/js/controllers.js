@@ -38,10 +38,15 @@ angular.module('myApp.controllers', ['chartjs']).
   .controller('lineCtrl', ['$scope' , '$http', '$routeParams',function($scope, $http, $routeParams) {
 
   	var setJson = function(coinValue) {
+  		$scope.$emit('LOAD');
 	 		$http.get('../server/json.php?coinValue=' + coinValue).success(function(data) {
 			$scope.money = data;
+			$scope.$emit('UNLOAD');
 			$scope.coinValue = coinValue;
-			console.log('money:', $scope.money);
+			//console.log('money:', $scope.money.data.pop());
+			$scope.lastValues = $scope.money.data.pop();
+			console.log('lastValues:', $scope.lastValues);
+
 
 			var price = new Array();
 			var timeDate = new Array();
@@ -66,6 +71,8 @@ angular.module('myApp.controllers', ['chartjs']).
 
 				console.log(price);
 				console.log(timeDate);
+				$scope.lastTime = time.pop();
+				console.log('lastTime', $scope.lastTime);
 
 				 $scope.lineData = {
 	    labels : time,
@@ -89,7 +96,7 @@ angular.module('myApp.controllers', ['chartjs']).
 
   }])
 
-  .controller('tickerCtrl', ['$scope', '$rootScope', '$http' ,function($scope, $rootScope, $http) {
+  .controller('tickerCtrl', ['$scope', '$rootScope', '$http', '$filter'  ,function($scope, $rootScope, $http, $filter) {
 
 	$scope.imgName = function(key){
 		 var imageName = key.slice(0, -4);
@@ -106,12 +113,12 @@ angular.module('myApp.controllers', ['chartjs']).
 		 }
 	}
 
-
+	$scope.$emit('LOAD');
 
   $http.get('../server/ticker.php').success(function(data){
 
 		$scope.ticker = data;
-
+		$scope.$emit('UNLOAD');
 
 		console.log('tickerData:', $scope.ticker);
 
@@ -134,11 +141,10 @@ angular.module('myApp.controllers', ['chartjs']).
 		}	
 
 		
-
-		// console.log('coinBtc:', coinBtc);
-		// console.log('coinLtc:', coinLtc);
-		// console.log('coinCny:', coinCny);
-		// console.log('coinnew:', coinNew);
+		 console.log('coinBtc:', coinBtc);
+		 console.log('coinLtc:', coinLtc);
+		 console.log('coinCny:', coinCny);
+		 console.log('coinnew:', coinNew);
 
 		$scope.coinBtc = coinBtc;
 		$scope.coinLtc = coinLtc;
@@ -157,12 +163,23 @@ angular.module('myApp.controllers', ['chartjs']).
 			default:
 			  $scope.marketArray = $scope.coinBtc;
 			}
+
+
 		};
 
 
-		
+			
 	});
 	
+
+	
+  }])
+
+  .controller('LoadingCtrl', ['$scope',function($scope) {
+
+	$scope.$on('LOAD', function(){$scope.loading = true});
+	$scope.$on('UNLOAD', function(){$scope.loading = false});
+
 	
   }]);
 

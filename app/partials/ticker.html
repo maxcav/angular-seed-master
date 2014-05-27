@@ -14,22 +14,25 @@
 				 
 		    </div>
 		</div> 
-	</div> <!-- row	 -->	
-	
+	</div> <!-- row	 -->
 
-		<div class="row tradingPairs"  ng-repeat="(key, value) in marketArray">
+		
+		 
+		<div class="row tradingPairs"  ng-repeat="(key, value) in marketArray | filter:search">
 		  <a href="line/{{key}}">	
-			<div class="col-md-10 max col-md-offset-1">
+			<div class="col-md-12 max">
 				<p class=""> 
 					<img ng-src="{{imgName(key)}}" height="30px" alt="">
 					<strong>{{key}}</strong> &ensp;
+					<span ng-show="value.vol_btc"><strong>Volume BTC:</strong> {{value.vol_btc}}btc</span> 
+					<span ng-show="value.vol_ac"><strong>Volume AC:</strong> {{value.vol_ac}}ac</span>
 					<strong>Avg:</strong> {{value.avg}} 	<strong>Buy:</strong> {{value.buy}} 
 					<strong>High:</strong> {{value.high}} <strong>Last:</strong> {{value.last}}
 					<strong>Low:</strong> {{value.low}} <strong>sell:</strong> {{value.sell}}
-					<span ng-show="item.vol_bqc"><strong>Volume BQC:</strong> {{value.vol_bqc}}</span> 
-					<span ng-show="item.vol_cny"><strong>Volume CNY:</strong> {{value.vol_cny}}</span>
+					
 				</p>
 			</div>
 		  </a>	
-		</div>	
+		</div>
+		
 </div>	

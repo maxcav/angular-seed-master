@@ -77,3 +77,27 @@ strong {
 .test {
   background: red;
 }
+
+.lastInfo {
+  list-style: none;
+}
+
+.panel-default{
+  background: #1abc9c;
+
+  border-color: #1abc9c;
+}
+.panel-default>.panel-heading{
+  background-color: rgba(26,188,156,0.5) !important;
+}
+
+.linediv{
+  margin-top: 60px;
+}
+
+.loadscreen {
+  margin-top: 100px;
+  width: 100%;
+  height: 1000px;
+  /*color: #1abc9c;*/
+}
