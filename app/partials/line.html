@@ -11,7 +11,7 @@
 		     <div class="col-md-3">
                 	<div class="panel panel-default">
 							  <div class="panel-heading">
-							    <p class="panel-title lead">{{coinValue}}</p>
+							    <p ng-controller="WikiCtrl" class="panel-title lead">{{wikiSearch}}</p>
 							  </div>
 					        	<div class="panel-body">
 					        <ul class="list-unstyled">
@@ -29,6 +29,8 @@
 				<div>
 				<cjs-line dataset="lineData" width="700" height="400"></cjs-line>
             </div>
+
+            <div ng-controller="WikiCtrl"></div>
 
         </div>
 
