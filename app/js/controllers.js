@@ -184,10 +184,10 @@ angular.module('myApp.controllers', ['chartjs']).
   }])
 
    .controller('WikiCtrl', ['$scope', '$rootScope', function($scope , $rootScope) {
-   			$scope.$on("coinValue",function() {
-   			var wikiSearch = $scope.coinValue.slice(0, -4);
+   		$scope.$on("coinValue",function() {
+   		var wikiSearch = $scope.coinValue.slice(0, -4);
    		var setWiki = function(wikiSearch) {	
-	   	$http.get('../server/wiki.php?coinValue=' + coinValue).success(function(data) {
+	   	$http.get('../server/wiki.php?wikiSearch=' + wikiSearch).success(function(data) {
 	   	
 	      switch(wikiSearch)
 				{

@@ -4,8 +4,9 @@
 // format=json: in json format
 // prop=text: send the text content of the article
 // section=0: top content of the page
-function setWiki($coinValue) {
+function setWiki($wikiSearch) {
 	$url = 'http://en.wikipedia.org/w/api.php?action=parse&page=peercoin&format=json&prop=text&section=0';
+	$jsonValue .= $wikiSearch;
 	$ch = curl_init($url);
 	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt ($ch, CURLOPT_USERAGENT, "TestScript"); // required by wikipedia.org server; use YOUR user agent with YOUR contact information. (otherwise your IP might get blocked)
@@ -23,6 +24,6 @@ function setWiki($coinValue) {
 	    print strip_tags($matches[1]); // Content of the first paragraph without the HTML tags.
 	}
 
-	setWiki($_GET["coinValue"]);
+	setWiki($_GET["wikiSearch"]);
 }
 
