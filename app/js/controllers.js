@@ -184,147 +184,139 @@ angular.module('myApp.controllers', ['chartjs']).
   }])
 
    .controller('WikiCtrl', ['$scope', '$rootScope', function($scope , $rootScope) {
-
-	$scope.$on("coinValue",function() {
-      
-
-      var wikiSearch = $scope.coinValue.slice(0, -4);
-      
-
-      switch(wikiSearch)
-			{
-			case 'aur':
-			  wikiSearch =  'Auroracoin';
-			  break;
-			case 'ac':
-			  wikiSearch =  'Asiacoin';
-			  break;
-			case 'bc':
-			  wikiSearch =  'Blackcoin';
-			  break;
-			 case 'bqc':
-			  wikiSearch =  'BBQcoin';
-			  break;
-			  case 'btb':
-			  wikiSearch =  'Bitbar';
-			  break;
-			  case 'buk':
-			  wikiSearch =  'CryptoBuck';
-			  break;
-			  case 'c2':
-			  wikiSearch =  'Coin2.0';
-			  break;
-			  case 'cdc':
-			  wikiSearch =  'Cloudcoin';
-			  break;
-			  case 'cmc':
-			  wikiSearch =  'Cosmoscoin';
-			  break;
-			  case 'cnc':
-			  wikiSearch =  'Chinacoin';
-			  break;
-			  case 'comm':
-			  wikiSearch =  'CommunityCoin';
-			  break;
-			  case 'dgc':
-			  wikiSearch =  'Digitalcoin';
-			  break;
-			  case 'doge':
-			  wikiSearch =  'Dogecoin';
-			  break;
-			  case 'drk':
-			  wikiSearch =  'Darkcoin';
-			  break;
-			  case 'flt':
-			  wikiSearch =  'Fluttercoin';
-			  break;
-			  case 'frc':
-			  wikiSearch =  'Freicoin';
-			  break;
-			  case 'ftc':
-			  wikiSearch =  'Feathercoin';
-			  break;
-			  case 'kdc':
-			  wikiSearch =  'Klondikecoin';
-			  break;
-			  case 'ltc':
-			  wikiSearch =  'Litecoin';
-			  break;
-			  case 'max':
-			  wikiSearch =  'Maxcoin';
-			  break;
-			  case 'mec':
-			  wikiSearch =  'Megacoin';
-			  break;
-			  case 'mint':
-			  wikiSearch =  'MintCoin';
-			  break;
-			  case 'mmc':
-			  wikiSearch =  'Memorycoin';
-			  break;
-			  case 'nec':
-			  wikiSearch =  'Neocoin';
-			  break;
-			  case 'nmc':
-			  wikiSearch =  'Namecoin';
-			  break;
-			  case 'nxt':
-			  wikiSearch =  'Nextcoin';
-			  break;
-			  case 'ppc':
-			  wikiSearch =  'Peercoin';
-			  break;
-			  case 'prt':
-			  wikiSearch =  'Particlecoin';
-			  break;
-			  case 'ptc':
-			  wikiSearch =  'Pesetacoin';
-			  break;
-			  case 'qrk':
-			  wikiSearch =  'Quark';
-			  break;
-			  case 'src':
-			  wikiSearch =  'Securecoin';
-			  break;
-			  case 'tag':
-			  wikiSearch =  'Tagcoin';
-			  break;
-			  case 'vtc':
-			  wikiSearch =  'Vertcoin';
-			  break;
-			  case 'wdc':
-			  wikiSearch =  'Worldcoin';
-			  break;
-			  case 'xcp':
-			  wikiSearch =  'CounterParty';
-			  break;
-			  case 'xpm':
-			  wikiSearch =  'Primecoin';
-			  break;
-			  case 'yac':
-			  wikiSearch =  'YAcoin';
-			  break;
-			  case 'zcc':
-			  wikiSearch =  'ZcCoin';
-			  break;
-			  case 'zet':
-			  wikiSearch =  'Zetacoin';
-			  break;
-			 default:
-			  wikiSearch =  'cryptocurrency';
+   			$scope.$on("coinValue",function() {
+   			var wikiSearch = $scope.coinValue.slice(0, -4);
+   		var setWiki = function(wikiSearch) {	
+	   	$http.get('../server/wiki.php?coinValue=' + coinValue).success(function(data) {
+	   	
+	      switch(wikiSearch)
+				{
+				case 'aur':
+				  wikiSearch =  'Auroracoin';
+				  break;
+				case 'ac':
+				  wikiSearch =  'Asiacoin';
+				  break;
+				case 'bc':
+				  wikiSearch =  'Blackcoin';
+				  break;
+				 case 'bqc':
+				  wikiSearch =  'BBQcoin';
+				  break;
+				  case 'btb':
+				  wikiSearch =  'Bitbar';
+				  break;
+				  case 'buk':
+				  wikiSearch =  'CryptoBuck';
+				  break;
+				  case 'c2':
+				  wikiSearch =  'Coin2.0';
+				  break;
+				  case 'cdc':
+				  wikiSearch =  'Cloudcoin';
+				  break;
+				  case 'cmc':
+				  wikiSearch =  'Cosmoscoin';
+				  break;
+				  case 'cnc':
+				  wikiSearch =  'Chinacoin';
+				  break;
+				  case 'comm':
+				  wikiSearch =  'CommunityCoin';
+				  break;
+				  case 'dgc':
+				  wikiSearch =  'Digitalcoin';
+				  break;
+				  case 'doge':
+				  wikiSearch =  'Dogecoin';
+				  break;
+				  case 'drk':
+				  wikiSearch =  'Darkcoin';
+				  break;
+				  case 'flt':
+				  wikiSearch =  'Fluttercoin';
+				  break;
+				  case 'frc':
+				  wikiSearch =  'Freicoin';
+				  break;
+				  case 'ftc':
+				  wikiSearch =  'Feathercoin';
+				  break;
+				  case 'kdc':
+				  wikiSearch =  'Klondikecoin';
+				  break;
+				  case 'ltc':
+				  wikiSearch =  'Litecoin';
+				  break;
+				  case 'max':
+				  wikiSearch =  'Maxcoin';
+				  break;
+				  case 'mec':
+				  wikiSearch =  'Megacoin';
+				  break;
+				  case 'mint':
+				  wikiSearch =  'MintCoin';
+				  break;
+				  case 'mmc':
+				  wikiSearch =  'Memorycoin';
+				  break;
+				  case 'nec':
+				  wikiSearch =  'Neocoin';
+				  break;
+				  case 'nmc':
+				  wikiSearch =  'Namecoin';
+				  break;
+				  case 'nxt':
+				  wikiSearch =  'Nextcoin';
+				  break;
+				  case 'ppc':
+				  wikiSearch =  'Peercoin';
+				  break;
+				  case 'prt':
+				  wikiSearch =  'Particlecoin';
+				  break;
+				  case 'ptc':
+				  wikiSearch =  'Pesetacoin';
+				  break;
+				  case 'qrk':
+				  wikiSearch =  'Quark';
+				  break;
+				  case 'src':
+				  wikiSearch =  'Securecoin';
+				  break;
+				  case 'tag':
+				  wikiSearch =  'Tagcoin';
+				  break;
+				  case 'vtc':
+				  wikiSearch =  'Vertcoin';
+				  break;
+				  case 'wdc':
+				  wikiSearch =  'Worldcoin';
+				  break;
+				  case 'xcp':
+				  wikiSearch =  'CounterParty';
+				  break;
+				  case 'xpm':
+				  wikiSearch =  'Primecoin';
+				  break;
+				  case 'yac':
+				  wikiSearch =  'YAcoin';
+				  break;
+				  case 'zcc':
+				  wikiSearch =  'ZcCoin';
+				  break;
+				  case 'zet':
+				  wikiSearch =  'Zetacoin';
+				  break;
+				 default:
+				  wikiSearch =  'cryptocurrency';
+				}
+			$scope.wikiSearch = wikiSearch;
+		    //console.log('setwiki:', wikiSearch);
 			}
-
-		 		$scope.wikiSearch = wikiSearch;
-
-		var setwiki = function() {	
-
-			console.log('setwiki:', wikiSearch);
-		}
-			
-		setwiki();
-
-    });
-			
+		}		
+		setwiki(wikiSearch);
+    });		
   }]);
 
   function HeaderController($scope, $location){ 
