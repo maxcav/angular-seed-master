@@ -185,10 +185,10 @@ angular.module('myApp.controllers', ['chartjs']).
 
    .controller('WikiCtrl', ['$scope', '$rootScope', function($scope , $rootScope) {
    		$scope.$on("coinValue",function() {
-   		var wikiSearch = $scope.coinValue.slice(0, -4);
-   		var setWiki = function(wikiSearch) {	
-	   	$http.get('../server/wiki.php?wikiSearch=' + wikiSearch).success(function(data) {
-	   	
+   		
+   		
+	   
+	   		var wikiSearch = $scope.coinValue.slice(0, -4);
 	      switch(wikiSearch)
 				{
 				case 'aur':
@@ -313,10 +313,9 @@ angular.module('myApp.controllers', ['chartjs']).
 				}
 			$scope.wikiSearch = wikiSearch;
 		    //console.log('setwiki:', wikiSearch);
-			}
-		}		
-		setwiki(wikiSearch);
-    });		
+			
+		
+    })	
   }]);
 
   function HeaderController($scope, $location){ 
